@@ -535,6 +535,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d1ed2da90a9fa47b5908cee48222f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minSpawnTime: 4
+  maxSpawnTime: 8
   farClouds:
   - {fileID: 5777236870661961656, guid: c03e25fedc405eb4aa7521c22b06c957, type: 3}
   - {fileID: 5777236870661961656, guid: 2806a24c1c038024ab3e8e35a17a9004, type: 3}

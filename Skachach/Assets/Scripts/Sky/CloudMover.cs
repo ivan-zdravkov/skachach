@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CloudMover : MonoBehaviour
 {
+    private const float xCoordinateToDestryoAt = -21f;
+
     [Range(1, 20)][SerializeField] float minSpeed = 5f;
     [Range(1, 20)][SerializeField] float maxSpeed = 15f;
 
@@ -21,7 +23,7 @@ public class CloudMover : MonoBehaviour
     {
         transform.position += Vector3.left * Time.deltaTime * this.speed / 10;
 
-        if (transform.position.x < -21f)
+        if (transform.position.x < xCoordinateToDestryoAt)
             Destroy(this.gameObject);
     }
 }
