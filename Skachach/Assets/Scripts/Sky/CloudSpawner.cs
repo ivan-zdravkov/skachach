@@ -21,10 +21,11 @@ public class CloudSpawner : MonoBehaviour
 
         this.cloudSettings = new CloudSettings[]
         {
-            new CloudSettings(z: 9.75f, minY: 2f, maxY: 4f, clouds: this.farClouds),
-            new CloudSettings(z: 9.25f, minY: 0f, maxY: 3f, clouds: this.farClouds),
-            new CloudSettings(z: 8.75f, minY: -3f, maxY: -1f, clouds: this.nearClouds),
-            new CloudSettings(z: 8.25f, minY: -8f, maxY: -4f, clouds: this.nearClouds)
+            new CloudSettings(z: 9.75f, minY: 3f, maxY: 5f, clouds: this.farClouds),
+            new CloudSettings(z: 9.25f, minY: 1f, maxY: 4f, clouds: this.farClouds),
+            new CloudSettings(z: 8.75f, minY: -2f, maxY: 0f, clouds: this.nearClouds),
+            new CloudSettings(z: 8.25f, minY: -4f, maxY: -2f, clouds: this.nearClouds),
+            new CloudSettings(z: 8.25f, minY: -2f, maxY: 0f, clouds: this.nearClouds)
         };
 
         StartCoroutine(SpawnClouds());
