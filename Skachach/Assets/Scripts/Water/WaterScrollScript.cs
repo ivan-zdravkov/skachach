@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class WaterScrollScript : MonoBehaviour
 {
-    [Range(1, 10)][SerializeField] float backSpeed = 1f;
-    [Range(1, 10)] [SerializeField] float midSpeed = 1.5f;
-    [Range(1, 10)] [SerializeField] float frontSpeed = 2f;
+    [Range(-10, 10)][SerializeField] float backSpeed = 1f;
+    [Range(-10, 10)] [SerializeField] float midSpeed = -1.5f;
+    [Range(-10, 10)] [SerializeField] float frontSpeed = 2f;
 
     Renderer rendererComponent;
 
