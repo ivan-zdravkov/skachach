@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScrollScript : MonoBehaviour
+public class SkyScrollScript : MonoBehaviour
 {
     [Range(1, 10)][SerializeField] float speed = 5f;
     Renderer rendererComponent;

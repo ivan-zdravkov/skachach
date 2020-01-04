@@ -4,10 +4,19 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 8847404161689811432
-    second: WaterTop
+    second: WaterFront
   - first:
       213: -7077578495685720143
     second: Water
+  - first:
+      213: 8847404161689811432
+    second: WaterTop
+  - first:
+      213: 3207770470420360628
+    second: WaterBack
+  - first:
+      213: -2922630256950070401
+    second: WaterMid
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -106,7 +115,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5fe0e01a8aa1c6742a760d46398fea0b
+      spriteID: aed66a5ac63b4304c84db240ba97d7d2
       internalID: 8847404161689811432
       vertices: []
       indices: 
@@ -127,7 +136,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a044ab0723489343ad698898b3ee981
+      spriteID: ac17f0ad89b3ad2468ca39333c2dbfd6
       internalID: -7077578495685720143
       vertices: []
       indices: 
