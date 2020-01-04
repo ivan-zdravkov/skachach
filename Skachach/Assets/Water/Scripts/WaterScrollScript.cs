@@ -18,7 +18,8 @@ public class WaterScrollScript : MonoBehaviour
 
     public void Start()
     {
-        this.rendererComponent = GetComponent<Renderer>();    
+        this.rendererComponent = GetComponent<Renderer>();
+        this.rendererComponent.sortingLayerName = "Foreground";
     }
 
     public void Update()
