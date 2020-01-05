@@ -17,6 +17,9 @@ TextureImporter:
   - first:
       213: -2922630256950070401
     second: WaterMid
+  - first:
+      213: 4774104728943454096
+    second: WaterEmpty
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -105,11 +108,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 128
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -126,11 +129,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 0
+        y: 128
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -138,6 +141,31 @@ TextureImporter:
       bones: []
       spriteID: ac17f0ad89b3ad2468ca39333c2dbfd6
       internalID: -7077578495685720143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterEmpty
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: -64, y: 18.446411}
+        - {x: 64, y: 18.470367}
+        - {x: 64, y: -64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23f6ac6af100f5147bb61ed433d79f4b
+      internalID: 4774104728943454096
       vertices: []
       indices: 
       edges: []
