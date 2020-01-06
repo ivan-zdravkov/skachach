@@ -11,16 +11,18 @@ public class Character : MonoBehaviour
     private const string AnimatorSliding = "IsSliding";
     private const string AnimatorIsDead = "IsDead";
 
-    [SerializeField] float movementSpeed = 5.0f;
+    [SerializeField] float runSpeed = 5.0f;
     [SerializeField] float jumpHeight = 150f;
 
     private Vector2 moveVector;
     private Animator animator;
+    private Rigidbody2D rigidBody;
 
     // Start is called before the first frame update
     void Start()
     {
         this.animator = GetComponent<Animator>();
+        this.rigidBody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -38,30 +40,41 @@ public class Character : MonoBehaviour
 
     private void Run()
     {
-        if (this.moveVector != null && this.moveVector.x != 0)
+        if (IsMoving())
         {
-            this.animator.SetBool(AnimatorRunning, true);
+            this.SetAnimation(AnimatorRunning);
 
-            transform.position = transform.position + new Vector3(
-                x: this.moveVector.x * this.movementSpeed * Time.deltaTime,
-                y: 0f,
-                z: 0f
-            );
+            this.rigidBody.velocity = new Vector2(this.moveVector.x * this.runSpeed, this.rigidBody.velocity.y);
 
             if (this.moveVector.x > 0)
                 transform.localScale = new Vector3(1, 1, 1);
             else
                 transform.localScale = new Vector3(-1, 1, 1);
         }
+        else if (IsSliding())
+        {
+            this.SetAnimation(AnimatorSliding);
+        }
         else
         {
-            this.animator.SetBool(AnimatorRunning, false);
+            this.rigidBody.velocity = new Vector2(0, this.rigidBody.velocity.y);
+            this.ResetAllAnimations();
         }
+    }
+
+    private bool IsMoving()
+    {
+        return this.moveVector != null && this.moveVector.x != 0;
+    }
+
+    private bool IsSliding()
+    {
+        return false;
     }
 
     private void Jump()
     {
-        if(this.moveVector != null && this.moveVector.y > 0)
+        if (this.moveVector != null && this.moveVector.y > 0)
         {
             transform.position = transform.position + new Vector3(
                 x: 0f,
@@ -69,5 +82,21 @@ public class Character : MonoBehaviour
                 z: 0f
             );
         }
+    }
+
+    private void ResetAllAnimations()
+    {
+        this.animator.SetBool(AnimatorRunning, false);
+        this.animator.SetBool(AnimatorJumping, false);
+        this.animator.SetBool(AnimatorSliding, false);
+        this.animator.SetBool(AnimatorIsDead, false);
+
+    }
+
+    private void SetAnimation(string animation)
+    {
+        this.ResetAllAnimations();
+
+        this.animator.SetBool(animation, true);
     }
 }
