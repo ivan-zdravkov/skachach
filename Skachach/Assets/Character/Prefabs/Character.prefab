@@ -182,7 +182,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6723867643250543064}
-        m_MethodName: Move
+        m_MethodName: SetMove
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -246,6 +246,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 4f4bab42-772a-48b1-be64-46314bf1dac0
     m_ActionName: UI/TrackedDeviceSelect
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7851f90e-c9f7-43d3-9515-7f8817ed5f55
+    m_ActionName: Player/Slide[/Keyboard/leftShift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

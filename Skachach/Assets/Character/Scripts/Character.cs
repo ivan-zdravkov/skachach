@@ -19,7 +19,7 @@ public class Character : MonoBehaviour
     private Rigidbody2D rigidBody;
 
     [SerializeField] float runSpeed = 5.0f;
-    [SerializeField] float jumpHeight = 0.1f;
+    [SerializeField] float jumpHeight = 0.01f;
 
     void Start()
     {
@@ -39,39 +39,31 @@ public class Character : MonoBehaviour
 
     private void HandleMovement()
     {
-        if (IsOnTheGround())
-        {
-            if (IsSliding())
-            {
-                if (IsMovingLeftOrRight())
-                    this.SetAnimation(SLIDING);
-                else
-                    this.ResetAllAnimations();
-            }
-            else if (IsMoveVectorSet())
-            {
-                Move();
+        if (IsSliding()) 
+            { /* Nothing, slowly stop moving */ }
+        else if (IsMoveVectorSet())
+            Move();
+        else
+            StopMoving();
 
-                this.SetAnimation(RUNNING);
-            }
-            else if (ShouldJump())
-            {
-                this.Jump();
-            }
-            else
-            {
-                StopMoving();
+        if (IsOnTheGround() && ShouldJump())
+            Jump();
 
-                this.ResetAllAnimations();
-            }
-        } else if (IsGoingUp())
-        {
-            this.SetAnimation(GOING_UP);
-        }
+        if (IsGoingUp())
+            SetAnimation(GOING_UP);
         else if (IsGoingDown())
+            SetAnimation(GOING_DOWN);
+        else if (IsOnTheGround())
         {
-            this.SetAnimation(GOING_DOWN);
+            if (IsSliding() && IsMovingLeftOrRight())
+                SetAnimation(SLIDING);
+            else if (IsMovingLeftOrRight())
+                SetAnimation(RUNNING);
+            else
+                ResetAllAnimations();
         }
+        else
+            ResetAllAnimations();
     }
 
     private bool IsOnTheGround()
@@ -91,7 +83,7 @@ public class Character : MonoBehaviour
 
     private bool IsGoingDown()
     {
-        return this.rigidBody.velocity.y < VERTICLE_VELOCITY_TRESHHOLD;
+        return this.rigidBody.velocity.y < -VERTICLE_VELOCITY_TRESHHOLD;
     }
 
     private void Move()
