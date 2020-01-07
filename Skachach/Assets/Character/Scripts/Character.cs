@@ -37,9 +37,15 @@ public class Character : MonoBehaviour
         this.moveVector = context.ReadValue<Vector2>();
     }
 
+    public bool Running { get { return this.animator.GetBool(RUNNING); } }
+    public bool Sliding { get { return this.animator.GetBool(SLIDING); } }
+    public bool GoingUp { get { return this.animator.GetBool(GOING_UP); } }
+    public bool GoingDown { get { return this.animator.GetBool(GOING_DOWN); } }
+    public bool Airbourne { get { return this.animator.GetBool(GOING_DOWN) || this.animator.GetBool(GOING_UP); } }
+
     private void HandleMovement()
     {
-        if (IsSliding()) 
+        if (IsSliding())
             { /* Nothing, slowly stop moving */ }
         else if (IsMoveVectorSet())
             Move();
