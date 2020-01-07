@@ -6,90 +6,136 @@ using UnityEngine.InputSystem;
 
 public class Character : MonoBehaviour
 {
-    private const string AnimatorRunning = "IsRunning";
-    private const string AnimatorJumping = "IsJumping";
-    private const string AnimatorSliding = "IsSliding";
-    private const string AnimatorIsDead = "IsDead";
+    private const float VERTICLE_VELOCITY_TRESHHOLD = 0.1f;
 
-    [SerializeField] float runSpeed = 5.0f;
-    [SerializeField] float jumpHeight = 150f;
+    private const string RUNNING = "IsRunning";
+    private const string GOING_UP = "IsGoingUp";
+    private const string GOING_DOWN = "IsGoingDown";
+    private const string SLIDING = "IsSliding";
+    private const string DEAD = "IsDead";
 
     private Vector2 moveVector;
     private Animator animator;
     private Rigidbody2D rigidBody;
 
-    // Start is called before the first frame update
+    [SerializeField] float runSpeed = 5.0f;
+    [SerializeField] float jumpHeight = 0.1f;
+
     void Start()
     {
         this.animator = GetComponent<Animator>();
         this.rigidBody = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Run();
+        HandleMovement();
     }
 
-    public void Move(InputAction.CallbackContext context)
+    public void SetMove(InputAction.CallbackContext context)
     {
         this.moveVector = context.ReadValue<Vector2>();
-
-        this.Jump();
     }
 
-    private void Run()
+    private void HandleMovement()
     {
-        if (IsMoving())
+        if (IsOnTheGround())
         {
-            this.SetAnimation(AnimatorRunning);
+            if (IsSliding())
+            {
+                if (IsMovingLeftOrRight())
+                    this.SetAnimation(SLIDING);
+                else
+                    this.ResetAllAnimations();
+            }
+            else if (IsMoveVectorSet())
+            {
+                Move();
 
-            this.rigidBody.velocity = new Vector2(this.moveVector.x * this.runSpeed, this.rigidBody.velocity.y);
-
-            if (this.moveVector.x > 0)
-                transform.localScale = new Vector3(1, 1, 1);
+                this.SetAnimation(RUNNING);
+            }
+            else if (ShouldJump())
+            {
+                this.Jump();
+            }
             else
-                transform.localScale = new Vector3(-1, 1, 1);
-        }
-        else if (IsSliding())
+            {
+                StopMoving();
+
+                this.ResetAllAnimations();
+            }
+        } else if (IsGoingUp())
         {
-            this.SetAnimation(AnimatorSliding);
+            this.SetAnimation(GOING_UP);
         }
-        else
+        else if (IsGoingDown())
         {
-            this.rigidBody.velocity = new Vector2(0, this.rigidBody.velocity.y);
-            this.ResetAllAnimations();
+            this.SetAnimation(GOING_DOWN);
         }
     }
 
-    private bool IsMoving()
+    private bool IsOnTheGround()
+    {
+        return Math.Abs(this.rigidBody.velocity.y) <= VERTICLE_VELOCITY_TRESHHOLD;
+    }
+
+    private bool IsMovingLeftOrRight()
+    {
+        return this.rigidBody.velocity.x != 0;
+    }
+
+    private bool IsGoingUp()
+    {
+        return this.rigidBody.velocity.y > VERTICLE_VELOCITY_TRESHHOLD;
+    }
+
+    private bool IsGoingDown()
+    {
+        return this.rigidBody.velocity.y < VERTICLE_VELOCITY_TRESHHOLD;
+    }
+
+    private void Move()
+    {
+        this.rigidBody.velocity = new Vector2(this.moveVector.x * this.runSpeed, this.rigidBody.velocity.y);
+
+        if (this.moveVector.x > 0)
+            transform.localScale = new Vector3(1, 1, 1); //Face Left
+        else
+            transform.localScale = new Vector3(-1, 1, 1); //Face Right
+    }
+
+    private void StopMoving()
+    {
+        this.rigidBody.velocity = new Vector2(0, this.rigidBody.velocity.y);
+    }
+
+    private bool IsMoveVectorSet()
     {
         return this.moveVector != null && this.moveVector.x != 0;
     }
 
     private bool IsSliding()
     {
-        return false;
+        return Keyboard.current.leftShiftKey.isPressed;
+    }
+
+    private bool ShouldJump()
+    {
+        return Keyboard.current.spaceKey.wasPressedThisFrame;
     }
 
     private void Jump()
     {
-        if (this.moveVector != null && this.moveVector.y > 0)
-        {
-            transform.position = transform.position + new Vector3(
-                x: 0f,
-                y: this.moveVector.y * this.jumpHeight * Time.deltaTime,
-                z: 0f
-            );
-        }
+        this.rigidBody.velocity = new Vector2(this.rigidBody.velocity.x, this.jumpHeight);
     }
 
     private void ResetAllAnimations()
     {
-        this.animator.SetBool(AnimatorRunning, false);
-        this.animator.SetBool(AnimatorJumping, false);
-        this.animator.SetBool(AnimatorSliding, false);
-        this.animator.SetBool(AnimatorIsDead, false);
+        this.animator.SetBool(RUNNING, false);
+        this.animator.SetBool(GOING_UP, false);
+        this.animator.SetBool(GOING_DOWN, false);
+        this.animator.SetBool(SLIDING, false);
+        this.animator.SetBool(DEAD, false);
 
     }
 

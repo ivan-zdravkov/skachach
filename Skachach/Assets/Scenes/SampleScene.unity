@@ -196,6 +196,57 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 141782485448386141, guid: c24cb208045ebcc489350bfbeceb6144,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 141782485448386141, guid: c24cb208045ebcc489350bfbeceb6144,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 141782485448386141, guid: c24cb208045ebcc489350bfbeceb6144,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 141782485448386141, guid: c24cb208045ebcc489350bfbeceb6144,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 141782485448386141, guid: c24cb208045ebcc489350bfbeceb6144,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_ActionId
+      value: 7851f90e-c9f7-43d3-9515-7f8817ed5f55
+      objectReference: {fileID: 0}
+    - target: {fileID: 141782485448386141, guid: c24cb208045ebcc489350bfbeceb6144,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_ActionName
+      value: Player/Slide[/Keyboard/leftShift]
+      objectReference: {fileID: 0}
+    - target: {fileID: 141782485448386141, guid: c24cb208045ebcc489350bfbeceb6144,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6723867643250543064, guid: c24cb208045ebcc489350bfbeceb6144,
+        type: 3}
+    - target: {fileID: 141782485448386141, guid: c24cb208045ebcc489350bfbeceb6144,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMove
+      objectReference: {fileID: 0}
+    - target: {fileID: 141782485448386141, guid: c24cb208045ebcc489350bfbeceb6144,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetSlide
+      objectReference: {fileID: 0}
+    - target: {fileID: 141782485448386141, guid: c24cb208045ebcc489350bfbeceb6144,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4527295809209642392, guid: c24cb208045ebcc489350bfbeceb6144,
         type: 3}
       propertyPath: m_LocalPosition.x
