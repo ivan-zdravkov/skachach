@@ -145,17 +145,18 @@ public class Character : MonoBehaviour
 
     private bool IsSprinting()
     {
-        return Keyboard.current.leftShiftKey.isPressed && this.CanSprint();
+        return this.CanSprint() && (Keyboard.current.leftShiftKey.isPressed || 
+            Keyboard.current.rightShiftKey.isPressed);
     }
 
     private bool IsSliding()
     {
-        return Keyboard.current.leftCtrlKey.isPressed;
+        return Keyboard.current.leftCtrlKey.isPressed || Keyboard.current.rightCtrlKey.isPressed;
     }
 
     private bool CanSprint()
     {
-        return this.IsOnTheGround(); // ToDo: Also determine if he has enough energy to sprint
+        return true;// this.IsOnTheGround(); // ToDo: Also determine if he has enough energy to sprint
     }
 
     private bool ShouldJump()
@@ -165,7 +166,17 @@ public class Character : MonoBehaviour
 
     private void Jump()
     {
-        this.rigidBody.velocity = new Vector2(this.rigidBody.velocity.x, this.jumpHeight);
+        if (Sliding)
+            GiveJumpVelocity(1 / this.sprintModifier);
+        else if (IsSprinting())
+            GiveJumpVelocity(this.sprintModifier);
+        else
+            GiveJumpVelocity();
+    }
+
+    private void GiveJumpVelocity(float modifier = 1.0f)
+    {
+        this.rigidBody.velocity = new Vector2(this.rigidBody.velocity.x, this.jumpHeight * modifier);
     }
 
     private void ResetAllAnimations()
