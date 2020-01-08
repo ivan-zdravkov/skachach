@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class Character : MonoBehaviour
 {
-    private const float VERTICLE_VELOCITY_TRESHHOLD = 0.5f;
+    private const float VERTICLE_VELOCITY_TRESHHOLD = 1f;
 
     private const string RUNNING = "IsRunning";
     private const string GOING_UP = "IsGoingUp";
@@ -186,7 +186,6 @@ public class Character : MonoBehaviour
         this.animator.SetBool(GOING_DOWN, false);
         this.animator.SetBool(SLIDING, false);
         this.animator.SetBool(DEAD, false);
-
     }
 
     private void SetAnimation(string animation)
