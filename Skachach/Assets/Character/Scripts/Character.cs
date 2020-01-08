@@ -29,7 +29,9 @@ public class Character : MonoBehaviour
 
     void Update()
     {
-        HandleMovement();
+        Move();
+        Face();
+        Animate();
     }
 
     public void SetMove(InputAction.CallbackContext context)
@@ -43,18 +45,21 @@ public class Character : MonoBehaviour
     public bool GoingDown { get { return this.animator.GetBool(GOING_DOWN); } }
     public bool Airbourne { get { return this.animator.GetBool(GOING_DOWN) || this.animator.GetBool(GOING_UP); } }
 
-    private void HandleMovement()
+    private void Move()
     {
         if (IsSliding())
             { /* Nothing, slowly stop moving */ }
         else if (IsMoveVectorSet())
-            Move();
+            GiveVelocity();
         else
             StopMoving();
 
         if (IsOnTheGround() && ShouldJump())
             Jump();
+    }
 
+    private void Animate()
+    {
         if (IsGoingUp())
             SetAnimation(GOING_UP);
         else if (IsGoingDown())
@@ -92,14 +97,21 @@ public class Character : MonoBehaviour
         return this.rigidBody.velocity.y < -VERTICLE_VELOCITY_TRESHHOLD;
     }
 
-    private void Move()
+    private void GiveVelocity()
     {
         this.rigidBody.velocity = new Vector2(this.moveVector.x * this.runSpeed, this.rigidBody.velocity.y);
+    }
 
-        if (this.moveVector.x > 0)
-            transform.localScale = new Vector3(1, 1, 1); //Face Left
-        else
-            transform.localScale = new Vector3(-1, 1, 1); //Face Right
+    private void Face()
+    {
+        if (!this.IsSliding())
+        {
+            if (this.moveVector.x > 0)
+                transform.localScale = new Vector3(1, 1, 1); //Face Left
+            else if (this.moveVector.x < 0)
+                transform.localScale = new Vector3(-1, 1, 1); //Face Right
+            else { /* Keep Same Direction */ }
+        }
     }
 
     private void StopMoving()
