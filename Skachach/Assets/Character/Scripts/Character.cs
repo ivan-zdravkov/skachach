@@ -20,6 +20,7 @@ public class Character : MonoBehaviour
 
     [SerializeField] float runSpeed = 5.0f;
     [SerializeField] float jumpHeight = 0.01f;
+    [SerializeField] float sprintModifier = 1.5f;
 
     void Start()
     {
@@ -48,9 +49,14 @@ public class Character : MonoBehaviour
     private void Move()
     {
         if (IsSliding())
-            { /* Nothing, slowly stop moving */ }
+        { /* Nothing, slowly stop moving */ }
         else if (IsMoveVectorSet())
-            GiveVelocity();
+        {
+            if (this.IsSprinting())
+                this.Sprint();
+            else
+                this.Run();
+        }
         else
             StopMoving();
 
@@ -60,6 +66,8 @@ public class Character : MonoBehaviour
 
     private void Animate()
     {
+        ChangeAnimationSpeed(1.0f);
+
         if (IsGoingUp())
             SetAnimation(GOING_UP);
         else if (IsGoingDown())
@@ -69,7 +77,12 @@ public class Character : MonoBehaviour
             if (IsSliding() && IsMovingLeftOrRight())
                 SetAnimation(SLIDING);
             else if (IsMovingLeftOrRight())
+            {
                 SetAnimation(RUNNING);
+
+                if (this.IsSprinting())
+                    ChangeAnimationSpeed(this.sprintModifier);
+            }
             else
                 ResetAllAnimations();
         }
@@ -97,20 +110,26 @@ public class Character : MonoBehaviour
         return this.rigidBody.velocity.y < -VERTICLE_VELOCITY_TRESHHOLD;
     }
 
-    private void GiveVelocity()
+    public void Sprint()
     {
-        this.rigidBody.velocity = new Vector2(this.moveVector.x * this.runSpeed, this.rigidBody.velocity.y);
+        this.GiveVelocity(this.sprintModifier);
+    }
+
+    public void Run()
+    {
+        this.GiveVelocity();
+    }
+
+    private void GiveVelocity(float modifier = 1.0f)
+    {
+        this.rigidBody.velocity = new Vector2(this.moveVector.x * this.runSpeed * modifier, this.rigidBody.velocity.y);
     }
 
     private void Face()
     {
-        if (!this.IsSliding())
+        if (!this.IsSliding() && this.moveVector.x != 0)
         {
-            if (this.moveVector.x > 0)
-                transform.localScale = new Vector3(1, 1, 1); //Face Left
-            else if (this.moveVector.x < 0)
-                transform.localScale = new Vector3(-1, 1, 1); //Face Right
-            else { /* Keep Same Direction */ }
+            transform.localScale = new Vector3(Math.Sign(this.moveVector.x), 1, 1);
         }
     }
 
@@ -124,9 +143,19 @@ public class Character : MonoBehaviour
         return this.moveVector != null && this.moveVector.x != 0;
     }
 
+    private bool IsSprinting()
+    {
+        return Keyboard.current.leftShiftKey.isPressed && this.CanSprint();
+    }
+
     private bool IsSliding()
     {
-        return Keyboard.current.leftShiftKey.isPressed;
+        return Keyboard.current.leftCtrlKey.isPressed;
+    }
+
+    private bool CanSprint()
+    {
+        return this.IsOnTheGround(); // ToDo: Also determine if he has enough energy to sprint
     }
 
     private bool ShouldJump()
@@ -154,5 +183,10 @@ public class Character : MonoBehaviour
         this.ResetAllAnimations();
 
         this.animator.SetBool(animation, true);
+    }
+
+    private void ChangeAnimationSpeed(float sprintModifier)
+    {
+        this.animator.speed = sprintModifier;
     }
 }
