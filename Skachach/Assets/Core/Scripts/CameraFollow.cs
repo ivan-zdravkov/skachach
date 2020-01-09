@@ -6,16 +6,26 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     private const float ORTOGRAFIC_HORIZINTAL_SIZE = 16f;
-    private const float LEFT_END_OF_LEVEL = -16f;
-    private const float RIGHT_END_OF_LEVEL = 48f;
     private const float TRESHHOLD = 10f;
+
+    private float leftEndOfLevel;
+    private float rightEndOfLevel;
 
     [SerializeField] GameObject objectToFollow;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        CompositeCollider2D[] planes = FindObjectsOfType<CompositeCollider2D>();
+
+        foreach(CompositeCollider2D plane in planes)
+        {
+            if (plane.bounds.max.x > rightEndOfLevel)
+                rightEndOfLevel = plane.bounds.max.x - 0.25f;
+
+            if (plane.bounds.min.x < leftEndOfLevel)
+                leftEndOfLevel = plane.bounds.min.x + 0.25f;
+        }
     }
 
     // Update is called once per frame
@@ -32,8 +42,8 @@ public class CameraFollow : MonoBehaviour
 
     private bool EndOfLevelInSight()
     {
-        bool leftEndVisible = this.transform.position.x - ORTOGRAFIC_HORIZINTAL_SIZE < LEFT_END_OF_LEVEL;
-        bool rightEndVisible = this.transform.position.x + ORTOGRAFIC_HORIZINTAL_SIZE > RIGHT_END_OF_LEVEL;
+        bool leftEndVisible = this.transform.position.x - ORTOGRAFIC_HORIZINTAL_SIZE < leftEndOfLevel;
+        bool rightEndVisible = this.transform.position.x + ORTOGRAFIC_HORIZINTAL_SIZE > rightEndOfLevel;
 
         if (MovementAmount() < 0)
             return leftEndVisible;
