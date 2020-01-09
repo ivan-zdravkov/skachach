@@ -1,5 +1,57 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!61 &1751526905041815204
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919414433635949956}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 4e4d312ea281b004595232eecaa74a14, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -16, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 18}
+  m_EdgeRadius: 0
+--- !u!61 &6589000964085518925
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919414433635949956}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 4e4d312ea281b004595232eecaa74a14, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 16, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 18}
+  m_EdgeRadius: 0
 --- !u!1 &1919414434690476699
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,7 +62,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1919414434690476701}
   - component: {fileID: 1919414434690476700}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cameras
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,6 +242,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88dc9546bbfc2664a8f64d1d028a6e06, type: 3}
+--- !u!1 &1919414433635949956 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7461503626836644925, guid: 88dc9546bbfc2664a8f64d1d028a6e06,
+    type: 3}
+  m_PrefabInstance: {fileID: 9020630090094201273}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1919414433635949944 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7461503626836645057, guid: 88dc9546bbfc2664a8f64d1d028a6e06,
