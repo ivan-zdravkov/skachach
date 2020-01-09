@@ -165,7 +165,7 @@ PrefabInstance:
     - target: {fileID: 2570509072662682188, guid: d189234ad65055d43bd501801b413e44,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2570509072662682188, guid: d189234ad65055d43bd501801b413e44,
         type: 3}
@@ -185,7 +185,7 @@ PrefabInstance:
     - target: {fileID: 2570509072662682191, guid: d189234ad65055d43bd501801b413e44,
         type: 3}
       propertyPath: m_Name
-      value: SkyCamera
+      value: Sky
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d189234ad65055d43bd501801b413e44, type: 3}
@@ -334,7 +334,7 @@ PrefabInstance:
     - target: {fileID: 7461503626836645057, guid: 88dc9546bbfc2664a8f64d1d028a6e06,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7461503626836645057, guid: 88dc9546bbfc2664a8f64d1d028a6e06,
         type: 3}
@@ -682,7 +682,7 @@ PrefabInstance:
     - target: {fileID: 8306293087410459028, guid: 5a2d71e9be2e61843b1fd17366d5d8fd,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8306293087410459028, guid: 5a2d71e9be2e61843b1fd17366d5d8fd,
         type: 3}
