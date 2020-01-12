@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class CoinAnimation : MonoBehaviour
 {
-    [Range(0.1f, 1f)][SerializeField] float floatHeight = 0.25f;
-    [Range(1f, 10f)][SerializeField] float floatSpeed = 1f;
+    [Range(0f, 1f)][SerializeField] float floatHeight = 0.25f;
+    [Range(0f, 10f)][SerializeField] float floatSpeed = 1f;
+    [SerializeField] AudioClip collectSFX;
 
     private float topVerticalThreshhold;
     private float bottomVerticalThreshhold;
@@ -21,15 +22,34 @@ public class CoinAnimation : MonoBehaviour
         this.OffsetVerticalPosition();
     }
 
+    void Update()
+    {
+        this.MoveVertically();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        GetCollected(collision);
+    }
+
+    private void GetCollected(Collider2D collision)
+    {
+        Character character = collision.gameObject.GetComponent<Character>();
+
+        if (character)
+        {
+            character.AddCoin();
+
+            AudioSource.PlayClipAtPoint(this.collectSFX, this.transform.position);
+
+            Destroy(this.gameObject);
+        }
+    }
+
     private void OffsetVerticalPosition()
     {
         for (int i = 0; i < transform.position.x * 5; i++)
             this.MoveVertically();
-    }
-
-    void Update()
-    {
-        this.MoveVertically();
     }
 
     private void DetermineVerticalThreshholds()

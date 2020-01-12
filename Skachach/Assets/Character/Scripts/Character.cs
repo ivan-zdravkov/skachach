@@ -205,7 +205,7 @@ public class Character : MonoBehaviour
         this.animator.speed = sprintModifier;
     }
 
-    private void AddCoin()
+    public void AddCoin()
     {
         this.coins++;
 
