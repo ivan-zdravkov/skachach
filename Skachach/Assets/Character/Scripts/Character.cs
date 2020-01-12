@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
@@ -27,10 +28,18 @@ public class Character : MonoBehaviour
     [SerializeField] float jumpHeight = 0.01f;
     [SerializeField] float sprintModifier = 1.5f;
 
+    [SerializeField] GameObject coinsDisplayGameObject;
+    [SerializeField] GameObject healthDisplayGameObject;
+
+    Text coinsDisplay;
+    Text healthDisplay;
+
     void Start()
     {
         this.animator = GetComponent<Animator>();
         this.rigidBody = GetComponent<Rigidbody2D>();
+        this.coinsDisplay = this.coinsDisplayGameObject.GetComponent<Text>();
+        this.healthDisplay = this.healthDisplayGameObject.GetComponent<Text>();
     }
 
     void Update()
@@ -215,6 +224,13 @@ public class Character : MonoBehaviour
 
             this.coins = 0;
         }
+
+        this.UpdateCoinsDisplay();
+    }
+
+    private void UpdateCoinsDisplay()
+    {
+        this.coinsDisplay.text = this.coins.ToString();
     }
 
     private void AddALife()
@@ -231,6 +247,8 @@ public class Character : MonoBehaviour
     {
         if (this.health < this.maxHealth)
             this.health++;
+
+        this.UpdateHealthDisplay();
     }
 
     private void LoseHealth()
@@ -239,5 +257,12 @@ public class Character : MonoBehaviour
 
         if (this.health <= 0)
             this.Die();
+
+        this.UpdateHealthDisplay();
+    }
+
+    private void UpdateHealthDisplay()
+    {
+        this.healthDisplay.text = this.health.ToString();
     }
 }
