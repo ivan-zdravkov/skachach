@@ -14,10 +14,15 @@ public class Character : MonoBehaviour
     private const string SLIDING = "IsSliding";
     private const string DEAD = "IsDead";
 
+    private int coins = 0;
+    private int health = 0;
+
     private Vector2 moveVector;
     private Animator animator;
     private Rigidbody2D rigidBody;
 
+    [SerializeField] int lives = 3;
+    [SerializeField] int maxHealth = 5;
     [SerializeField] float runSpeed = 5.0f;
     [SerializeField] float jumpHeight = 0.01f;
     [SerializeField] float sprintModifier = 1.5f;
@@ -198,5 +203,41 @@ public class Character : MonoBehaviour
     private void ChangeAnimationSpeed(float sprintModifier)
     {
         this.animator.speed = sprintModifier;
+    }
+
+    private void AddCoin()
+    {
+        this.coins++;
+
+        if (this.coins >= 100)
+        {
+            this.AddALife();
+
+            this.coins = 0;
+        }
+    }
+
+    private void AddALife()
+    {
+        this.lives++;
+    }
+
+    private void Die()
+    {
+        this.lives--;
+    }
+
+    private void RestoreHealth()
+    {
+        if (this.health < this.maxHealth)
+            this.health++;
+    }
+
+    private void LoseHealth()
+    {
+        this.health--;
+
+        if (this.health <= 0)
+            this.Die();
     }
 }
