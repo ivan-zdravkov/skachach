@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -29,17 +30,20 @@ public class Character : MonoBehaviour
     [SerializeField] float sprintModifier = 1.5f;
 
     [SerializeField] GameObject coinsDisplayGameObject;
-    [SerializeField] GameObject healthDisplayGameObject;
+    [SerializeField] GameObject livesDisplayGameObject;
 
-    Text coinsDisplay;
-    Text healthDisplay;
+    TextMeshProUGUI coinsDisplay;
+    TextMeshProUGUI livesDisplay;
+
+    HeartsDisplay heartsDisplay;
 
     void Start()
     {
         this.animator = GetComponent<Animator>();
         this.rigidBody = GetComponent<Rigidbody2D>();
-        this.coinsDisplay = this.coinsDisplayGameObject.GetComponent<Text>();
-        this.healthDisplay = this.healthDisplayGameObject.GetComponent<Text>();
+        this.heartsDisplay = FindObjectOfType<HeartsDisplay>();
+        this.coinsDisplay = this.coinsDisplayGameObject.GetComponent<TextMeshProUGUI>();
+        this.livesDisplay = this.livesDisplayGameObject.GetComponent<TextMeshProUGUI>();
     }
 
     void Update()
@@ -230,7 +234,7 @@ public class Character : MonoBehaviour
 
     private void UpdateCoinsDisplay()
     {
-        this.coinsDisplay.text = this.coins.ToString();
+           this.coinsDisplay.text = this.coins.ToString();
     }
 
     private void AddALife()
@@ -263,6 +267,6 @@ public class Character : MonoBehaviour
 
     private void UpdateHealthDisplay()
     {
-        this.healthDisplay.text = this.health.ToString();
+        this.livesDisplay.text = this.health.ToString();
     }
 }
