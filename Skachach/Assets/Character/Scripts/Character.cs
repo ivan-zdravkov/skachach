@@ -8,7 +8,8 @@ using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
-    private const float HURT_DURATION = 2f;
+    private const float HURT_DURATION = 1f;
+    private const float BLINK_DURATION = 0.1f;
     private const float VERTICLE_VELOCITY_TRESHHOLD = 0.25f;
 
     private const string RUNNING = "IsRunning";
@@ -48,7 +49,7 @@ public class Character : MonoBehaviour
         this.rigidBody = GetComponent<Rigidbody2D>();
         this.heartsDisplay = FindObjectOfType<HeartsDisplay>();
         this.characterHead = FindObjectOfType<CharacterHead>();
-        this.spriteRenderer = FindObjectOfType<SpriteRenderer>();
+        this.spriteRenderer = GetComponent<SpriteRenderer>();
         this.coinsDisplay = this.coinsDisplayGameObject.GetComponent<TextMeshProUGUI>();
         this.livesDisplay = this.livesDisplayGameObject.GetComponent<TextMeshProUGUI>();
 
@@ -231,6 +232,7 @@ public class Character : MonoBehaviour
 
     public void AddCoin()
     {
+        LoseHealth();
         this.coins++;
 
         if (this.coins >= 100)
@@ -280,8 +282,7 @@ public class Character : MonoBehaviour
     {
         if (!this.IsHurting)
         {
-            this.characterHead.Hurt(HURT_DURATION);
-            this.Hurt(HURT_DURATION);
+            this.Hurt();
 
             this.health--;
 
@@ -306,17 +307,43 @@ public class Character : MonoBehaviour
         }
     }
 
-    private void Hurt(float hurtDuration)
+    private void Hurt()
     {
-        StartCoroutine(SlowDown(hurtDuration));
+        this.characterHead.Hurt(HURT_DURATION);
+        this.BlinkPlayer();
+        StartCoroutine(SlowDown());
     }
 
-    private IEnumerator SlowDown(float hurtDuration)
+    private IEnumerator SlowDown()
     {
         this.runSpeed /= 2;
 
-        yield return new WaitForSeconds(hurtDuration);
+        yield return new WaitForSeconds(HURT_DURATION);
 
         this.runSpeed = this.originalRunSpeed;
+    }
+
+    private void BlinkPlayer()
+    {
+        int numberOfBlinks = Mathf.RoundToInt(HURT_DURATION / BLINK_DURATION);
+
+        StartCoroutine(DoBlinks(numberOfBlinks, BLINK_DURATION));
+    }
+
+    IEnumerator DoBlinks(int numBlinks, float seconds)
+    {
+        this.spriteRenderer.color = Color.red;
+
+        for (int i = 0; i < numBlinks; i++)
+        {
+            this.spriteRenderer.enabled = !this.spriteRenderer.enabled;
+            this.animator.enabled = !this.animator.enabled;
+
+            yield return new WaitForSeconds(seconds);
+        }
+
+        this.spriteRenderer.color = Color.white;
+        this.spriteRenderer.enabled = true;
+        this.animator.enabled = true;
     }
 }
