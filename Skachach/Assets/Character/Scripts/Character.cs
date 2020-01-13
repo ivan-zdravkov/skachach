@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
+    private const float HURT_DURATION = 2f;
     private const float VERTICLE_VELOCITY_TRESHHOLD = 0.25f;
 
     private const string RUNNING = "IsRunning";
@@ -17,14 +18,15 @@ public class Character : MonoBehaviour
     private const string DEAD = "IsDead";
 
     private int coins = 0;
-    private int health = 0;
+    private int health = 3;
+    private int maxHealth = 3;
 
     private Vector2 moveVector;
     private Animator animator;
     private Rigidbody2D rigidBody;
+    private SpriteRenderer spriteRenderer;
 
     [SerializeField] int lives = 3;
-    [SerializeField] int maxHealth = 5;
     [SerializeField] float runSpeed = 5.0f;
     [SerializeField] float jumpHeight = 0.01f;
     [SerializeField] float sprintModifier = 1.5f;
@@ -32,18 +34,27 @@ public class Character : MonoBehaviour
     [SerializeField] GameObject coinsDisplayGameObject;
     [SerializeField] GameObject livesDisplayGameObject;
 
-    TextMeshProUGUI coinsDisplay;
-    TextMeshProUGUI livesDisplay;
+    private TextMeshProUGUI coinsDisplay;
+    private TextMeshProUGUI livesDisplay;
 
-    HeartsDisplay heartsDisplay;
+    private HeartsDisplay heartsDisplay;
+    private CharacterHead characterHead;
+
+    private float originalRunSpeed;
 
     void Start()
     {
         this.animator = GetComponent<Animator>();
         this.rigidBody = GetComponent<Rigidbody2D>();
         this.heartsDisplay = FindObjectOfType<HeartsDisplay>();
+        this.characterHead = FindObjectOfType<CharacterHead>();
+        this.spriteRenderer = FindObjectOfType<SpriteRenderer>();
         this.coinsDisplay = this.coinsDisplayGameObject.GetComponent<TextMeshProUGUI>();
         this.livesDisplay = this.livesDisplayGameObject.GetComponent<TextMeshProUGUI>();
+
+        this.heartsDisplay.UpdateHealthDisplay(this.health);
+
+        this.originalRunSpeed = this.runSpeed;
     }
 
     void Update()
@@ -84,7 +95,7 @@ public class Character : MonoBehaviour
 
     private void Animate()
     {
-        ChangeAnimationSpeed(1.0f);
+        ChangeAnimationSpeed(1.0f * this.runSpeed / this.originalRunSpeed);
 
         if (IsGoingUp())
             SetAnimation(GOING_UP);
@@ -99,7 +110,7 @@ public class Character : MonoBehaviour
                 SetAnimation(RUNNING);
 
                 if (this.IsSprinting())
-                    ChangeAnimationSpeed(this.sprintModifier);
+                    ChangeAnimationSpeed(this.sprintModifier * this.runSpeed / this.originalRunSpeed);
             }
             else
                 ResetAllAnimations();
@@ -226,7 +237,7 @@ public class Character : MonoBehaviour
         {
             this.AddALife();
 
-            this.coins = 0;
+            this.coins -= 100;
         }
 
         this.UpdateCoinsDisplay();
@@ -234,39 +245,78 @@ public class Character : MonoBehaviour
 
     private void UpdateCoinsDisplay()
     {
-           this.coinsDisplay.text = this.coins.ToString();
+        this.coinsDisplay.text = this.coins.ToString();
     }
 
     private void AddALife()
     {
         this.lives++;
+
+        this.UpdateLifeDisplay();
     }
 
     private void Die()
     {
         this.lives--;
+
+        this.UpdateLifeDisplay();
+
+        this.health = this.maxHealth;
     }
 
     private void RestoreHealth()
     {
         if (this.health < this.maxHealth)
+        {
             this.health++;
 
-        this.UpdateHealthDisplay();
+            this.heartsDisplay.UpdateHealthDisplay(this.health);
+        }
+        else
+            this.coins += 50;
     }
 
     private void LoseHealth()
     {
-        this.health--;
+        if (!this.IsHurting)
+        {
+            this.characterHead.Hurt(HURT_DURATION);
+            this.Hurt(HURT_DURATION);
 
-        if (this.health <= 0)
-            this.Die();
+            this.health--;
 
-        this.UpdateHealthDisplay();
+            if (this.health < 0)
+                this.Die();
+
+            this.heartsDisplay.UpdateHealthDisplay(this.health);
+        }
+
     }
 
-    private void UpdateHealthDisplay()
+    private void UpdateLifeDisplay()
     {
-        this.livesDisplay.text = this.health.ToString();
+        this.livesDisplay.text = $"x{this.lives}";
+    }
+
+    public bool IsHurting
+    {
+        get
+        {
+            return this.runSpeed != this.originalRunSpeed;
+        }
+    }
+
+    private void Hurt(float hurtDuration)
+    {
+        StartCoroutine(SlowDown(hurtDuration));
+    }
+
+    private IEnumerator SlowDown(float hurtDuration)
+    {
+        this.runSpeed /= 2;
+
+        yield return new WaitForSeconds(hurtDuration);
+
+        this.runSpeed = this.originalRunSpeed;
     }
 }

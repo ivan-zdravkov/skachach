@@ -138,9 +138,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b9f7db8d6bb754ab337a42c6664463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lives: 3
   runSpeed: 6
   jumpHeight: 15
   sprintModifier: 1.5
+  coinsDisplayGameObject: {fileID: 0}
+  livesDisplayGameObject: {fileID: 0}
 --- !u!70 &-1427198932429296397
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

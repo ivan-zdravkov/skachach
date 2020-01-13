@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class CharacterHead : MonoBehaviour
 {
-    private const float HURT_DURATION = 2;
     private const float SHAKE_PERIOD = 0.05f;
     private const float SHAKE_AMOUNT = 0.02f;
 
@@ -24,13 +23,13 @@ public class CharacterHead : MonoBehaviour
 
     }
 
-    public void Hurt()
+    public void Hurt(float hurtDuration)
     {
-        StartCoroutine(this.TurnRed());
-        StartCoroutine(this.HurtSprite());
+        StartCoroutine(this.TurnRed(hurtDuration));
+        StartCoroutine(this.HurtSprite(hurtDuration));
 
         this.InvokeRepeating("StartShaking", 0, SHAKE_PERIOD);
-        this.Invoke("StopShaking", HURT_DURATION);
+        this.Invoke("StopShaking", hurtDuration);
     }
 
     public bool IsHurting
@@ -41,11 +40,11 @@ public class CharacterHead : MonoBehaviour
         }
     }
 
-    private IEnumerator HurtSprite()
+    private IEnumerator HurtSprite(float hurtDuration)
     {
         this.spriteRenderer.sprite = this.hurtSprite;
 
-        yield return new WaitForSeconds(HURT_DURATION);
+        yield return new WaitForSeconds(hurtDuration);
 
         this.spriteRenderer.sprite = this.sprite;
     }
@@ -66,11 +65,11 @@ public class CharacterHead : MonoBehaviour
         );
     }
 
-    private IEnumerator TurnRed()
+    private IEnumerator TurnRed(float hurtDuration)
     {
         this.spriteRenderer.color = Color.red;
 
-        yield return new WaitForSeconds(HURT_DURATION);
+        yield return new WaitForSeconds(hurtDuration);
 
         this.spriteRenderer.color = Color.white;
     }
