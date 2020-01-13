@@ -4,10 +4,10 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 3418888014334820752
-    second: CharacterHead_0
+    second: CharacterHeadHurt
   - first:
       213: -2714307240699683063
-    second: CharacterHead_2
+    second: CharacterHead
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -104,15 +104,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CharacterHead_0
+      name: CharacterHeadHurt
       rect:
         serializedVersion: 2
         x: 10
-        y: 16
+        y: 17
         width: 310
         height: 252
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -125,15 +125,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CharacterHead_2
+      name: CharacterHead
       rect:
         serializedVersion: 2
-        x: 9
+        x: 8
         y: 296
         width: 309
         height: 252
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
