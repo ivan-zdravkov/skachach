@@ -5,29 +5,23 @@ using UnityEngine;
 
 public class CharacterHead : MonoBehaviour
 {
-    private const float HURT_DURATION = 5f;
+    private const float HURT_DURATION = 2;
     private const float SHAKE_PERIOD = 0.05f;
     private const float SHAKE_AMOUNT = 0.02f;
 
     private SpriteRenderer spriteRenderer;
-
-    private Vector3 originalPosition;
 
     [SerializeField] Sprite sprite;
     [SerializeField] Sprite hurtSprite;
 
     void Start()
     {
-        this.originalPosition = this.transform.position;
-
         this.spriteRenderer = this.GetComponent<SpriteRenderer>();
-
-        this.Hurt();
     }
 
     void Update()
     {
-        
+
     }
 
     public void Hurt()
@@ -37,6 +31,14 @@ public class CharacterHead : MonoBehaviour
 
         this.InvokeRepeating("StartShaking", 0, SHAKE_PERIOD);
         this.Invoke("StopShaking", HURT_DURATION);
+    }
+
+    public bool IsHurting
+    {
+        get
+        {
+            return this.spriteRenderer.color == Color.red;
+        }
     }
 
     private IEnumerator HurtSprite()
@@ -50,14 +52,18 @@ public class CharacterHead : MonoBehaviour
 
     private void StartShaking()
     {
-        transform.position = this.originalPosition + UnityEngine.Random.insideUnitSphere * SHAKE_AMOUNT;
+        transform.position = this.transform.position + UnityEngine.Random.insideUnitSphere * SHAKE_AMOUNT;
     }
 
     private void StopShaking()
     {
         CancelInvoke("StartShaking");
 
-        transform.position = this.originalPosition;
+        transform.position = new Vector3(
+            x: Mathf.Round(transform.position.x * 2f) * 0.5f,
+            y: Mathf.Round(transform.position.y * 2f) * 0.5f,
+            z: transform.position.z
+        );
     }
 
     private IEnumerator TurnRed()
