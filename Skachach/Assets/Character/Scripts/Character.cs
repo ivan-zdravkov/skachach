@@ -232,7 +232,6 @@ public class Character : MonoBehaviour
 
     public void AddCoin()
     {
-        LoseHealth();
         this.coins++;
 
         if (this.coins >= 100)
