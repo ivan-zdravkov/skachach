@@ -146,6 +146,8 @@ MonoBehaviour:
   livesDisplayGameObject: {fileID: 0}
   coinToExplode: {fileID: 483405964773936004, guid: 07e11d0298f671646b985e163da862dc,
     type: 3}
+  deathSFX: {fileID: 8300000, guid: 8c6e1d48546fe5945a04eecae08b17c5, type: 3}
+  multipleCoinsSFX: {fileID: 8300000, guid: 47724735020d7c34ab6034d698f7c048, type: 3}
 --- !u!70 &-1427198932429296397
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

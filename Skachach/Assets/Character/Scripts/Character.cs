@@ -12,6 +12,7 @@ public class Character : MonoBehaviour
     private const float BLINK_DURATION = 0.1f;
     private const float VERTICLE_VELOCITY_TRESHHOLD = 0.25f;
     private const int COINS_PER_EXTRA_HEALTH = 50;
+    private const int RESPAWN_SECONDS = 3;
 
     private const string RUNNING = "IsRunning";
     private const string GOING_UP = "IsGoingUp";
@@ -24,6 +25,7 @@ public class Character : MonoBehaviour
     private int maxHealth = 3;
 
     private Vector2 moveVector;
+    private Vector2 spawnLocation;
     private Animator animator;
     private Rigidbody2D rigidBody;
     private SpriteRenderer spriteRenderer;
@@ -36,6 +38,9 @@ public class Character : MonoBehaviour
     [SerializeField] GameObject coinsDisplayGameObject;
     [SerializeField] GameObject livesDisplayGameObject;
     [SerializeField] GameObject coinToExplode;
+
+    [SerializeField] AudioClip deathSFX;
+    [SerializeField] AudioClip multipleCoinsSFX;
 
     private TextMeshProUGUI coinsDisplay;
     private TextMeshProUGUI livesDisplay;
@@ -54,7 +59,7 @@ public class Character : MonoBehaviour
         this.spriteRenderer = GetComponent<SpriteRenderer>();
         this.coinsDisplay = this.coinsDisplayGameObject.GetComponent<TextMeshProUGUI>();
         this.livesDisplay = this.livesDisplayGameObject.GetComponent<TextMeshProUGUI>();
-
+        this.spawnLocation = new Vector2(transform.position.x, transform.position.y);
         this.heartsDisplay.UpdateHealthDisplay(this.health);
 
         this.originalRunSpeed = this.runSpeed;
@@ -62,8 +67,12 @@ public class Character : MonoBehaviour
 
     void Update()
     {
-        Move();
-        Face();
+        if (!this.IsDead)
+        {
+            Move();
+            Face();
+        }
+
         Animate();
     }
 
@@ -77,6 +86,7 @@ public class Character : MonoBehaviour
     public bool GoingUp { get { return this.animator.GetBool(GOING_UP); } }
     public bool GoingDown { get { return this.animator.GetBool(GOING_DOWN); } }
     public bool Airbourne { get { return this.animator.GetBool(GOING_DOWN) || this.animator.GetBool(GOING_UP); } }
+    public bool IsDead { get { return this.animator.GetBool(DEAD); } }
 
     private void Move()
     {
@@ -120,6 +130,14 @@ public class Character : MonoBehaviour
         }
         else
             ResetAllAnimations();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        DieCollider dieCollider = collision.gameObject.GetComponent<DieCollider>();
+
+        if (dieCollider != null)
+            this.Die();
     }
 
     private bool IsOnTheGround()
@@ -235,10 +253,13 @@ public class Character : MonoBehaviour
     public void AddCoins(int numberOfCoins)
     {
         if (numberOfCoins == 1)
-            RestoreHealth();
+            this.RestoreHealth();
 
         this.coins += numberOfCoins;
         this.ExplodeCoins(numberOfCoins);
+
+        if (numberOfCoins > 1)
+            AudioSource.PlayClipAtPoint(this.multipleCoinsSFX, transform.position);
 
         if (this.coins >= 100)
         {
@@ -267,6 +288,21 @@ public class Character : MonoBehaviour
         this.lives--;
 
         this.UpdateLifeDisplay();
+
+        this.SetAnimation(DEAD);
+
+        AudioSource.PlayClipAtPoint(this.deathSFX, transform.position);
+
+        StartCoroutine(Respawn());
+    }
+
+    private IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(RESPAWN_SECONDS);
+
+        this.transform.position = this.spawnLocation;
+        this.rigidBody.velocity = new Vector2(0, 0);
+        this.ResetAllAnimations();
 
         this.health = this.maxHealth;
     }
