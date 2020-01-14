@@ -19,11 +19,14 @@ public class HeartsDisplay : MonoBehaviour
 
     public void UpdateHealthDisplay(int health)
     {
-        for (int i = 0; i < 3; i++)
+        if (this.spriteRenderers != null && this.spriteRenderers.Length >= 2)
         {
-            Sprite sprite = (health <= i) ? this.emptyHeart : this.filledHeart;
+            for (int i = 0; i < 3; i++)
+            {
+                Sprite sprite = (health <= i) ? this.emptyHeart : this.filledHeart;
 
-            this.spriteRenderers[i].sprite = sprite;
+                this.spriteRenderers[i].sprite = sprite;
+            }
         }
     }
 }

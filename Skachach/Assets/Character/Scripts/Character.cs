@@ -11,6 +11,7 @@ public class Character : MonoBehaviour
     private const float HURT_DURATION = 1f;
     private const float BLINK_DURATION = 0.1f;
     private const float VERTICLE_VELOCITY_TRESHHOLD = 0.25f;
+    private const int COINS_PER_EXTRA_HEALTH = 50;
 
     private const string RUNNING = "IsRunning";
     private const string GOING_UP = "IsGoingUp";
@@ -34,6 +35,7 @@ public class Character : MonoBehaviour
 
     [SerializeField] GameObject coinsDisplayGameObject;
     [SerializeField] GameObject livesDisplayGameObject;
+    [SerializeField] GameObject coinToExplode;
 
     private TextMeshProUGUI coinsDisplay;
     private TextMeshProUGUI livesDisplay;
@@ -230,9 +232,13 @@ public class Character : MonoBehaviour
         this.animator.speed = sprintModifier;
     }
 
-    public void AddCoin()
+    public void AddCoins(int numberOfCoins)
     {
-        this.coins++;
+        if (numberOfCoins == 1)
+            RestoreHealth();
+
+        this.coins += numberOfCoins;
+        this.ExplodeCoins(numberOfCoins);
 
         if (this.coins >= 100)
         {
@@ -274,7 +280,9 @@ public class Character : MonoBehaviour
             this.heartsDisplay.UpdateHealthDisplay(this.health);
         }
         else
-            this.coins += 50;
+        {
+            this.AddCoins(COINS_PER_EXTRA_HEALTH);
+        }
     }
 
     private void LoseHealth()
@@ -344,5 +352,19 @@ public class Character : MonoBehaviour
         this.spriteRenderer.color = Color.white;
         this.spriteRenderer.enabled = true;
         this.animator.enabled = true;
+    }
+
+    private void ExplodeCoins(int number)
+    {
+        for (int i = 0; i < number; i++)
+        {
+            GameObject coin = Instantiate(
+                original: this.coinToExplode,
+                position: this.transform.position,
+                rotation: Quaternion.identity
+            );
+
+            Destroy(coin, 3f);
+        }
     }
 }

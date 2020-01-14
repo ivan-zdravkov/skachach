@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6723867643250543064}
   - component: {fileID: -1427198932429296397}
   - component: {fileID: 141782485448386141}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,6 +144,8 @@ MonoBehaviour:
   sprintModifier: 1.5
   coinsDisplayGameObject: {fileID: 0}
   livesDisplayGameObject: {fileID: 0}
+  coinToExplode: {fileID: 483405964773936004, guid: 07e11d0298f671646b985e163da862dc,
+    type: 3}
 --- !u!70 &-1427198932429296397
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

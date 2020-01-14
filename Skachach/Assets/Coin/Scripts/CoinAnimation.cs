@@ -38,7 +38,7 @@ public class CoinAnimation : MonoBehaviour
 
         if (character)
         {
-            character.AddCoin();
+            character.AddCoins(1);
 
             AudioSource.PlayClipAtPoint(this.collectSFX, this.transform.position);
 

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 615140675379598796}
   - component: {fileID: 615140675379598797}
   - component: {fileID: 615140675379598833}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WaterTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
