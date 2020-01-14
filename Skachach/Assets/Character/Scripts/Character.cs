@@ -256,9 +256,6 @@ public class Character : MonoBehaviour
 
     public void AddCoins(int numberOfCoins)
     {
-        if (numberOfCoins == 1)
-            this.Die();
-
         this.coins += numberOfCoins;
         this.ExplodeCoins(numberOfCoins);
 

@@ -1,0 +1,505 @@
+fileFormatVersion: 2
+guid: 3ac0b6d6d69a06e4e8fa85b9c168880f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 9157319259325599392
+    second: BloomingTree_0
+  - first:
+      213: 5569620669934804681
+    second: BloomingTree_1
+  - first:
+      213: -7759484147963632401
+    second: BloomingTree_2
+  - first:
+      213: -2870534570741406705
+    second: BloomingTree_3
+  - first:
+      213: -8546808331721865505
+    second: BloomingTree_4
+  - first:
+      213: 4856469902649961544
+    second: BloomingTree_5
+  - first:
+      213: 5888714888126781975
+    second: BloomingTree_6
+  - first:
+      213: -4314990729778452049
+    second: BloomingTree_7
+  - first:
+      213: 8583843300858198411
+    second: BloomingTree_8
+  - first:
+      213: -1109452504029127261
+    second: BloomingTree_9
+  - first:
+      213: -3169072129290657079
+    second: BloomingTree_10
+  - first:
+      213: -4690182809750655689
+    second: BloomingTree_11
+  - first:
+      213: -415806346750303726
+    second: BloomingTree_12
+  - first:
+      213: -7507197626772715216
+    second: BloomingTree_13
+  - first:
+      213: 8925682821284019929
+    second: BloomingTree_14
+  - first:
+      213: 4262335104153009400
+    second: BloomingTree_15
+  - first:
+      213: 68821331236787102
+    second: BloomingTree_16
+  - first:
+      213: -785361489928048925
+    second: BloomingTree_17
+  - first:
+      213: -3981169983733824423
+    second: BloomingTree_18
+  - first:
+      213: 2817766260278130913
+    second: BloomingTree_19
+  - first:
+      213: 8557297897283196461
+    second: BloomingTree_20
+  - first:
+      213: 4320249352334921412
+    second: BloomingTree_21
+  - first:
+      213: -5310841595752598333
+    second: BloomingTree_22
+  - first:
+      213: -3961085568352444895
+    second: BloomingTree_23
+  - first:
+      213: 5008931867847270981
+    second: BloomingTree_24
+  - first:
+      213: -5186407449162065472
+    second: BloomingTree_25
+  - first:
+      213: 5817502926819117638
+    second: BloomingTree_26
+  - first:
+      213: -618696960899311851
+    second: BloomingTree_27
+  - first:
+      213: 1150690860880486752
+    second: BloomingTree_28
+  - first:
+      213: -5915782882392891026
+    second: BloomingTree_29
+  - first:
+      213: -1357813763904856997
+    second: BloomingTree_30
+  - first:
+      213: 4218579083095475172
+    second: BloomingTree_31
+  - first:
+      213: 8985418011307408101
+    second: BloomingTree_32
+  - first:
+      213: -7839480485645192876
+    second: BloomingTree_33
+  - first:
+      213: 3473548118650525223
+    second: BloomingTree_34
+  - first:
+      213: 2929014923672576733
+    second: BloomingTree_35
+  - first:
+      213: -5393005502529273423
+    second: BloomingTree_36
+  - first:
+      213: -3591208853576811965
+    second: BloomingTree_37
+  - first:
+      213: 2115343574295259491
+    second: BloomingTree_38
+  - first:
+      213: 3439229855997276074
+    second: BloomingTree_39
+  - first:
+      213: 179745980413706876
+    second: BloomingTree_40
+  - first:
+      213: -311816415442361164
+    second: BloomingTree_41
+  - first:
+      213: -2543903484416358348
+    second: BloomingTree_42
+  - first:
+      213: 2643593252991820072
+    second: BloomingTree_43
+  - first:
+      213: 4645047901746728695
+    second: BloomingTree_44
+  - first:
+      213: -6021153930835159376
+    second: BloomingTree_45
+  - first:
+      213: -2332543515306452497
+    second: BloomingTree_46
+  - first:
+      213: 2431478063916405339
+    second: BloomingTree_47
+  - first:
+      213: -6044914444008577509
+    second: BloomingTree_48
+  - first:
+      213: -3005776964874910966
+    second: BloomingTree_49
+  - first:
+      213: 1645479882850785576
+    second: BloomingTree_50
+  - first:
+      213: -945799607814577148
+    second: BloomingTree_51
+  - first:
+      213: 5251223807421394690
+    second: BloomingTree_52
+  - first:
+      213: -4045577051823017765
+    second: BloomingTree_53
+  - first:
+      213: 5040197533909192459
+    second: BloomingTree_54
+  - first:
+      213: 976995476386138464
+    second: BloomingTree_55
+  - first:
+      213: -5037169612105795946
+    second: BloomingTree_56
+  - first:
+      213: 2455503738375979644
+    second: BloomingTree_57
+  - first:
+      213: 6303605901390895393
+    second: BloomingTree_58
+  - first:
+      213: -6458396804770375332
+    second: BloomingTree_59
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 150
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BloomingTree_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 747
+        width: 271
+        height: 249
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3f31232d940be44d89f927bf8b4b208
+      internalID: 9157319259325599392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloomingTree_1
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 747
+        width: 271
+        height: 249
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 240f90887f2614344aa856ceb8bee1ab
+      internalID: 5569620669934804681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloomingTree_2
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 747
+        width: 271
+        height: 249
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47924c0cfc984e147b24caa004f7d7b6
+      internalID: -7759484147963632401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloomingTree_3
+      rect:
+        serializedVersion: 2
+        x: 813
+        y: 747
+        width: 271
+        height: 249
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ab7fe169b16fd546b2430c3a564e34f
+      internalID: -2870534570741406705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloomingTree_6
+      rect:
+        serializedVersion: 2
+        x: 1626
+        y: 747
+        width: 271
+        height: 249
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8825fe243948b4049978a8ec12d70921
+      internalID: 5888714888126781975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloomingTree_10
+      rect:
+        serializedVersion: 2
+        x: 2710
+        y: 747
+        width: 271
+        height: 249
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecc713d4b7b480d499e4b3bb01009d7b
+      internalID: -3169072129290657079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloomingTree_16
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 498
+        width: 271
+        height: 249
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50653263966595a41bd88a9d5bf3655a
+      internalID: 68821331236787102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloomingTree_27
+      rect:
+        serializedVersion: 2
+        x: 3252
+        y: 498
+        width: 271
+        height: 249
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8aac1c8586bb78468f0448618cb8a0a
+      internalID: -618696960899311851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloomingTree_38
+      rect:
+        serializedVersion: 2
+        x: 2168
+        y: 249
+        width: 271
+        height: 249
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d336ff6fe9a08a418fafb02711687e9
+      internalID: 2115343574295259491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloomingTree_49
+      rect:
+        serializedVersion: 2
+        x: 1084
+        y: 0
+        width: 271
+        height: 249
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26db295b57a7cb74b9ee6f6e688683fa
+      internalID: -3005776964874910966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
