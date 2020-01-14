@@ -67,12 +67,8 @@ public class Character : MonoBehaviour
 
     void Update()
     {
-        if (!this.IsDead)
-        {
-            Move();
-            Face();
-        }
-
+        Move();
+        Face();
         Animate();
     }
 
@@ -86,10 +82,13 @@ public class Character : MonoBehaviour
     public bool GoingUp { get { return this.animator.GetBool(GOING_UP); } }
     public bool GoingDown { get { return this.animator.GetBool(GOING_DOWN); } }
     public bool Airbourne { get { return this.animator.GetBool(GOING_DOWN) || this.animator.GetBool(GOING_UP); } }
-    public bool IsDead { get { return this.animator.GetBool(DEAD); } }
+    public bool IsDead { get; set; }
 
     private void Move()
     {
+        if (IsDead)
+            return;
+
         if (IsSliding())
         { /* Nothing, slowly stop moving */ }
         else if (IsMoveVectorSet())
@@ -110,7 +109,9 @@ public class Character : MonoBehaviour
     {
         ChangeAnimationSpeed(1.0f * this.runSpeed / this.originalRunSpeed);
 
-        if (IsGoingUp())
+        if (IsDead)
+            SetAnimation(DEAD);
+        else if (IsGoingUp())
             SetAnimation(GOING_UP);
         else if (IsGoingDown())
             SetAnimation(GOING_DOWN);
@@ -177,6 +178,9 @@ public class Character : MonoBehaviour
 
     private void Face()
     {
+        if (IsDead)
+            return;
+
         if (!this.IsSliding() && this.moveVector.x != 0)
         {
             transform.localScale = new Vector3(Math.Sign(this.moveVector.x), 1, 1);
@@ -253,7 +257,7 @@ public class Character : MonoBehaviour
     public void AddCoins(int numberOfCoins)
     {
         if (numberOfCoins == 1)
-            this.RestoreHealth();
+            this.Die();
 
         this.coins += numberOfCoins;
         this.ExplodeCoins(numberOfCoins);
@@ -285,15 +289,18 @@ public class Character : MonoBehaviour
 
     private void Die()
     {
-        this.lives--;
+        if (!IsDead)
+        {
+            StartCoroutine(SetDeadFlag());
 
-        this.UpdateLifeDisplay();
+            this.lives--;
 
-        this.SetAnimation(DEAD);
+            this.UpdateLifeDisplay();
 
-        AudioSource.PlayClipAtPoint(this.deathSFX, transform.position);
+            AudioSource.PlayClipAtPoint(this.deathSFX, transform.position);
 
-        StartCoroutine(Respawn());
+            StartCoroutine(Respawn());
+        }
     }
 
     private IEnumerator Respawn()
@@ -302,9 +309,17 @@ public class Character : MonoBehaviour
 
         this.transform.position = this.spawnLocation;
         this.rigidBody.velocity = new Vector2(0, 0);
-        this.ResetAllAnimations();
 
         this.health = this.maxHealth;
+    }
+
+    private IEnumerator SetDeadFlag()
+    {
+        this.IsDead = true;
+
+        yield return new WaitForSeconds(RESPAWN_SECONDS);
+
+        this.IsDead = false;
     }
 
     private void RestoreHealth()

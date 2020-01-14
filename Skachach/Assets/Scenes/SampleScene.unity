@@ -120,24 +120,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &110509926 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1919414433635949956, guid: 7fa8cff982bd96a4ea72a95eb855b8da,
-    type: 3}
-  m_PrefabInstance: {fileID: 1919414434000102904}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &110509933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110509926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77495262c2a3e934a9e920e870c6f22d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &915246520 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4774815741892405994, guid: ea099149da8d7364cb94963003ec58be,
@@ -229,11 +211,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1919414433635949956, guid: 7fa8cff982bd96a4ea72a95eb855b8da,
-        type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 1919414434690476699, guid: 7fa8cff982bd96a4ea72a95eb855b8da,
         type: 3}
       propertyPath: m_Name
@@ -298,36 +275,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2023882511344269821, guid: 7fa8cff982bd96a4ea72a95eb855b8da,
-        type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7261461478860906244, guid: 7fa8cff982bd96a4ea72a95eb855b8da,
-        type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9020630090164012301, guid: 7fa8cff982bd96a4ea72a95eb855b8da,
-        type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9020630091085377863, guid: 7fa8cff982bd96a4ea72a95eb855b8da,
-        type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9020630091383793968, guid: 7fa8cff982bd96a4ea72a95eb855b8da,
-        type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9020630091760743273, guid: 7fa8cff982bd96a4ea72a95eb855b8da,
-        type: 3}
-      propertyPath: m_Layer
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fa8cff982bd96a4ea72a95eb855b8da, type: 3}
