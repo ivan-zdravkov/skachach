@@ -32,8 +32,7 @@ public class Character : MonoBehaviour
 
     [SerializeField] int lives = 3;
     [SerializeField] float runSpeed = 5.0f;
-    [SerializeField] float jumpHeight = 0.01f;
-    [SerializeField] float sprintModifier = 1.5f;
+    [SerializeField] float jumpHeight = 20f;
 
     [SerializeField] GameObject coinsDisplayGameObject;
     [SerializeField] GameObject livesDisplayGameObject;
@@ -49,6 +48,7 @@ public class Character : MonoBehaviour
     private CharacterHead characterHead;
 
     private float originalRunSpeed;
+    private bool canDoubleJump = false;
 
     void Start()
     {
@@ -95,16 +95,18 @@ public class Character : MonoBehaviour
         { /* Nothing, slowly stop moving */ }
         else if (IsMoveVectorSet())
         {
-            if (this.IsSprinting())
-                this.Sprint();
-            else
-                this.Run();
+            this.Run();
         }
         else
             StopMoving();
 
+        if (IsOnTheGround())
+            ResetDoubleJump();
+
         if (IsOnTheGround() && ShouldJump())
             Jump();
+        else if (!IsOnTheGround() && ShouldDoubleJump())
+            DoubleJump();
     }
 
     private void Animate()
@@ -124,9 +126,6 @@ public class Character : MonoBehaviour
             else if (IsMovingLeftOrRight())
             {
                 SetAnimation(RUNNING);
-
-                if (this.IsSprinting())
-                    ChangeAnimationSpeed(this.sprintModifier * this.runSpeed / this.originalRunSpeed);
             }
             else
                 ResetAllAnimations();
@@ -163,11 +162,6 @@ public class Character : MonoBehaviour
         return this.rigidBody.velocity.y < -VERTICLE_VELOCITY_TRESHHOLD;
     }
 
-    public void Sprint()
-    {
-        this.GiveVelocity(this.sprintModifier);
-    }
-
     public void Run()
     {
         this.GiveVelocity();
@@ -199,12 +193,6 @@ public class Character : MonoBehaviour
         return this.moveVector != null && this.moveVector.x != 0;
     }
 
-    private bool IsSprinting()
-    {
-        return this.CanSprint() && (Keyboard.current.leftShiftKey.isPressed || 
-            Keyboard.current.rightShiftKey.isPressed);
-    }
-
     private bool IsSliding()
     {
         return Keyboard.current.leftCtrlKey.isPressed || Keyboard.current.rightCtrlKey.isPressed;
@@ -220,14 +208,21 @@ public class Character : MonoBehaviour
         return Keyboard.current.spaceKey.wasPressedThisFrame;
     }
 
+    private bool ShouldDoubleJump()
+    {
+        return this.ShouldJump() && this.canDoubleJump; 
+    }
+
     private void Jump()
     {
-        if (Sliding)
-            GiveJumpVelocity(1 / this.sprintModifier);
-        else if (IsSprinting())
-            GiveJumpVelocity(this.sprintModifier);
-        else
-            GiveJumpVelocity();
+        GiveJumpVelocity(1.0f);
+    }
+
+    private void DoubleJump()
+    {
+        this.canDoubleJump = false;
+
+        GiveJumpVelocity(0.75f);
     }
 
     private void GiveJumpVelocity(float modifier = 1.0f)
@@ -416,5 +411,10 @@ public class Character : MonoBehaviour
 
             Destroy(coin, 3f);
         }
+    }
+
+    private void ResetDoubleJump()
+    {
+        this.canDoubleJump = true;
     }
 }

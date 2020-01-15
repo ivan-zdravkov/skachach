@@ -139,9 +139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lives: 3
-  runSpeed: 6
-  jumpHeight: 15
-  sprintModifier: 1.5
+  runSpeed: 8
+  jumpHeight: 20
   coinsDisplayGameObject: {fileID: 0}
   livesDisplayGameObject: {fileID: 0}
   coinToExplode: {fileID: 483405964773936004, guid: 07e11d0298f671646b985e163da862dc,
