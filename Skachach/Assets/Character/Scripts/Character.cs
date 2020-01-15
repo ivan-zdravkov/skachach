@@ -54,15 +54,17 @@ public class Character : MonoBehaviour
     {
         this.animator = GetComponent<Animator>();
         this.rigidBody = GetComponent<Rigidbody2D>();
-        this.heartsDisplay = FindObjectOfType<HeartsDisplay>();
-        this.characterHead = FindObjectOfType<CharacterHead>();
         this.spriteRenderer = GetComponent<SpriteRenderer>();
+
         this.coinsDisplay = this.coinsDisplayGameObject.GetComponent<TextMeshProUGUI>();
         this.livesDisplay = this.livesDisplayGameObject.GetComponent<TextMeshProUGUI>();
-        this.spawnLocation = new Vector2(transform.position.x, transform.position.y);
-        this.heartsDisplay.UpdateHealthDisplay(this.health);
 
+        this.heartsDisplay = FindObjectOfType<HeartsDisplay>();
+        this.characterHead = FindObjectOfType<CharacterHead>();
+
+        this.heartsDisplay.UpdateHealthDisplay(this.health);
         this.originalRunSpeed = this.runSpeed;
+        this.spawnLocation = new Vector2(transform.position.x, transform.position.y);
     }
 
     void Update()
