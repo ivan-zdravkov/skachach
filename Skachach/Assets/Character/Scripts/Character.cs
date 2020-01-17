@@ -79,6 +79,14 @@ public class Character : MonoBehaviour
         this.moveVector = context.ReadValue<Vector2>();
     }
 
+    public static Color HurtColor
+    {
+        get
+        {
+            return new Color(1f, 0.6f, 0.6f);
+        }
+    }
+
     public bool Running { get { return this.animator.GetBool(RUNNING); } }
     public bool Sliding { get { return this.animator.GetBool(SLIDING); } }
     public bool GoingUp { get { return this.animator.GetBool(GOING_UP); } }
@@ -253,6 +261,8 @@ public class Character : MonoBehaviour
 
     public void AddCoins(int numberOfCoins)
     {
+        this.LoseHealth();
+
         this.coins += numberOfCoins;
         this.ExplodeCoins(numberOfCoins);
 
@@ -384,7 +394,7 @@ public class Character : MonoBehaviour
 
     IEnumerator DoBlinks(int numBlinks, float seconds)
     {
-        this.spriteRenderer.color = Color.red;
+        this.spriteRenderer.color = HurtColor;
 
         for (int i = 0; i < numBlinks; i++)
         {

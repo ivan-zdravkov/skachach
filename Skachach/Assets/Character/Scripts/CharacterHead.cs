@@ -36,7 +36,7 @@ public class CharacterHead : MonoBehaviour
     {
         get
         {
-            return this.spriteRenderer.color == Color.red;
+            return this.spriteRenderer.color == Character.HurtColor;
         }
     }
 
@@ -67,7 +67,7 @@ public class CharacterHead : MonoBehaviour
 
     private IEnumerator TurnRed(float hurtDuration)
     {
-        this.spriteRenderer.color = Color.red;
+        this.spriteRenderer.color = Character.HurtColor;
 
         yield return new WaitForSeconds(hurtDuration);
 
