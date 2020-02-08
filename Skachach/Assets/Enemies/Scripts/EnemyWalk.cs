@@ -27,6 +27,11 @@ public class EnemyWalk : MonoBehaviour
             StopMoving();
     }
 
+    public void SetSpeed(float speed)
+    {
+        this.walkSpeed = speed;
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         EnemyDirectionTurner turner = collision.gameObject.GetComponent<EnemyDirectionTurner>();

@@ -6,7 +6,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     private const float ORTOGRAFIC_HORIZINTAL_SIZE = 16f;
-    private const float TRESHHOLD = 10f;
+    private const float TRESHHOLD = 5f;
 
     private float leftEndOfLevel;
     private float rightEndOfLevel;
