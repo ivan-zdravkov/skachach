@@ -56,6 +56,25 @@ public class EnemyDamageHandler : MonoBehaviour
         }
     }
 
+    public void GenerateProjectile()
+    {
+        bool isFacingLeft = this.transform.localScale.x < 0;
+        Vector3 spawnPosition = new Vector3(
+            x: transform.position.x + (isFacingLeft ? -0.75f : 0.75f),
+            y: transform.position.y - 0.1f,
+            z: transform.position.z
+        );
+
+        GameObject newProjectile = Instantiate(this.projectile, spawnPosition, Quaternion.identity);
+
+        Beam beam = newProjectile.GetComponent<Beam>();
+
+        if (isFacingLeft)
+            beam.FlyLeft();
+        else
+            beam.FlyRight();
+    }
+
     public void StopShooting()
     {
         this.animator.speed = 1f;

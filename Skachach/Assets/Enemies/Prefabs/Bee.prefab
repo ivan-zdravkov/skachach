@@ -139,7 +139,7 @@ MonoBehaviour:
   canBeDamagedFromTheSides: 0
   canBeDamagedFromSliding: 0
   fallOffScreenWhenDead: 1
-  canShoot: 1
+  canShoot: 0
   projectile: {fileID: 0}
   shootInterval: 5
   shootIntervalUnsertantyPercent: 25
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 641b09d6ff8876d4787d29f6e0da81a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 6.713994
+  walkSpeed: 5.356071
   shouldTurn: 0
 --- !u!114 &3118351483622068939
 MonoBehaviour:

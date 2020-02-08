@@ -158,7 +158,8 @@ MonoBehaviour:
   canBeDamagedFromSliding: 1
   fallOffScreenWhenDead: 0
   canShoot: 1
-  projectile: {fileID: 0}
+  projectile: {fileID: 1226437475541636128, guid: c0806ecb91c3abb4fa598c5df926bccf,
+    type: 3}
   shootInterval: 5
   shootIntervalUnsertantyPercent: 25
 --- !u!70 &4164413392217442551
