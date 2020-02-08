@@ -33,7 +33,7 @@ public class EnemyDamageHandler : MonoBehaviour
     {
         Character character = collision.gameObject.GetComponent<Character>();
 
-        if (character && !IsDead)
+        if (character && !IsDead && ShouldCollide(collision))
         {
             HitDirection hitFrom = this.GetHitDirection(character);
 
@@ -41,9 +41,12 @@ public class EnemyDamageHandler : MonoBehaviour
             {
                 case HitDirection.Above:
                     if (this.canBeDamagedFromAbove)
+                    {
+                        this.character.BounceUp();
                         this.Die();
+                    }
                     else
-                        this.DamagePlayer();
+                        this.character.BounceUp();
                     break;
                 case HitDirection.Side:
                     if (this.canBeDamagedFromTheSides)
@@ -53,7 +56,10 @@ public class EnemyDamageHandler : MonoBehaviour
                     break;
                 case HitDirection.SideAndSlide:
                     if (this.canBeDamagedFromSliding)
+                    {
+                        this.character.Kick();
                         this.Die();
+                    }
                     else
                         this.DamagePlayer();
                     break;
@@ -64,6 +70,13 @@ public class EnemyDamageHandler : MonoBehaviour
         }
     }
 
+    private bool ShouldCollide(Collider2D collision)
+    {
+        CapsuleCollider2D capsuleCollider = this.GetComponent<CapsuleCollider2D>();
+
+        return capsuleCollider && collision.IsTouching(capsuleCollider);
+    }
+
     private void DamagePlayer()
     {
         this.character.LoseHealth();
@@ -72,6 +85,7 @@ public class EnemyDamageHandler : MonoBehaviour
     private void Die()
     {
         this.animator.SetBool(DEAD, true);
+        this.transform.position = new Vector2(this.transform.position.x, this.transform.position.y - 0.15f);
 
         if (this.fallOffScreenWhenDead)
         {

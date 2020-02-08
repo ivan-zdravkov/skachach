@@ -40,6 +40,9 @@ public class Character : MonoBehaviour
 
     [SerializeField] AudioClip deathSFX;
     [SerializeField] AudioClip multipleCoinsSFX;
+    [SerializeField] AudioClip bounceSFX;
+    [SerializeField] AudioClip hurtSFX;
+    [SerializeField] AudioClip kickSFX;
 
     private TextMeshProUGUI coinsDisplay;
     private TextMeshProUGUI livesDisplay;
@@ -206,11 +209,6 @@ public class Character : MonoBehaviour
         return Keyboard.current.leftCtrlKey.isPressed || Keyboard.current.rightCtrlKey.isPressed;
     }
 
-    private bool CanSprint()
-    {
-        return true;// this.IsOnTheGround(); // ToDo: Also determine if he has enough energy to sprint
-    }
-
     private bool ShouldJump()
     {
         return Keyboard.current.spaceKey.wasPressedThisFrame;
@@ -231,6 +229,18 @@ public class Character : MonoBehaviour
         this.canDoubleJump = false;
 
         GiveJumpVelocity(0.75f);
+    }
+
+    public void BounceUp()
+    {
+        AudioSource.PlayClipAtPoint(this.bounceSFX, transform.position);
+
+        GiveJumpVelocity(0.75f);
+    }
+
+    public void Kick()
+    {
+        AudioSource.PlayClipAtPoint(this.kickSFX, transform.position);
     }
 
     private void GiveJumpVelocity(float modifier = 1.0f)
@@ -309,10 +319,15 @@ public class Character : MonoBehaviour
     {
         yield return new WaitForSeconds(RESPAWN_SECONDS);
 
+        this.DestroyAllBees();
+
         this.transform.position = this.spawnLocation;
         this.rigidBody.velocity = new Vector2(0, 0);
 
         this.health = this.maxHealth;
+        this.heartsDisplay.UpdateHealthDisplay(this.health);
+
+
     }
 
     private IEnumerator SetDeadFlag()
@@ -342,6 +357,8 @@ public class Character : MonoBehaviour
     {
         if (!this.IsHurting)
         {
+            AudioSource.PlayClipAtPoint(this.hurtSFX, transform.position);
+
             this.Hurt();
 
             this.health--;
@@ -351,7 +368,6 @@ public class Character : MonoBehaviour
 
             this.heartsDisplay.UpdateHealthDisplay(this.health);
         }
-
     }
 
     private void UpdateLifeDisplay()
@@ -424,5 +440,11 @@ public class Character : MonoBehaviour
     private void ResetDoubleJump()
     {
         this.canDoubleJump = true;
+    }
+
+    private void DestroyAllBees()
+    {
+        foreach (Bee bee in FindObjectsOfType<Bee>())
+            Destroy(bee.gameObject);
     }
 }

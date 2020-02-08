@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1015321269
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 3427114271967980436, guid: 11f716167af1e6d4587cfe4cbcea8942,
     type: 3}
@@ -147,6 +147,9 @@ MonoBehaviour:
     type: 3}
   deathSFX: {fileID: 8300000, guid: 8c6e1d48546fe5945a04eecae08b17c5, type: 3}
   multipleCoinsSFX: {fileID: 8300000, guid: 47724735020d7c34ab6034d698f7c048, type: 3}
+  bounceSFX: {fileID: 8300000, guid: 913bcf81529549046bdb46ad8a67efa4, type: 3}
+  hurtSFX: {fileID: 8300000, guid: 38022218f7f84a14c94a53c89dc21f68, type: 3}
+  kickSFX: {fileID: 8300000, guid: bfdc42fbf22c74141b599ce9cd4704ba, type: 3}
 --- !u!70 &-1427198932429296397
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
