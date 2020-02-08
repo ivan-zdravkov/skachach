@@ -2378,6 +2378,7 @@ GameObject:
   - component: {fileID: 905521564}
   - component: {fileID: 905521563}
   - component: {fileID: 905521562}
+  - component: {fileID: 905521568}
   - component: {fileID: 905521566}
   - component: {fileID: 905521561}
   - component: {fileID: 905521567}
@@ -2548,6 +2549,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.75}
   m_EdgeRadius: 0
+--- !u!114 &905521568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905521560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7adc6745c63e5e47bd67aa76a799183, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canBeDamagedFromAbove: 1
+  canBeDamagedFromTheSides: 0
+  canBeDamagedFromSliding: 1
+  fallOffScreenWhenDead: 0
 --- !u!1 &915246520 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4774815741892405994, guid: ea099149da8d7364cb94963003ec58be,
@@ -3603,6 +3620,7 @@ GameObject:
   - component: {fileID: 1421571672}
   - component: {fileID: 1421571675}
   - component: {fileID: 1421571677}
+  - component: {fileID: 1421571679}
   - component: {fileID: 1421571676}
   - component: {fileID: 1421571678}
   m_Layer: 0
@@ -3772,6 +3790,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.15, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &1421571679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421571671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7adc6745c63e5e47bd67aa76a799183, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canBeDamagedFromAbove: 1
+  canBeDamagedFromTheSides: 1
+  canBeDamagedFromSliding: 1
+  fallOffScreenWhenDead: 0
 --- !u!4 &1448207061 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2020852706183659264, guid: 8044403a5e49c964b995de5d1807136f,
@@ -4030,6 +4064,7 @@ GameObject:
   - component: {fileID: 1582540908}
   - component: {fileID: 1582540907}
   - component: {fileID: 1582540906}
+  - component: {fileID: 1582540912}
   - component: {fileID: 1582540910}
   - component: {fileID: 1582540905}
   - component: {fileID: 1582540911}
@@ -4200,6 +4235,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1582540912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582540904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7adc6745c63e5e47bd67aa76a799183, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canBeDamagedFromAbove: 0
+  canBeDamagedFromTheSides: 0
+  canBeDamagedFromSliding: 1
+  fallOffScreenWhenDead: 0
 --- !u!1 &1736464569
 GameObject:
   m_ObjectHideFlags: 0
@@ -5412,6 +5463,7 @@ GameObject:
   - component: {fileID: 2068951358}
   - component: {fileID: 2068951357}
   - component: {fileID: 2068951355}
+  - component: {fileID: 2068951361}
   - component: {fileID: 2068951360}
   - component: {fileID: 2068951356}
   m_Layer: 0
@@ -5512,8 +5564,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1166468407
-  m_SortingLayer: 1
+  m_SortingLayerID: -580361261
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 6683615111705859281, guid: a5e0344cea6ed954984f0dac1265db1a,
     type: 3}
@@ -5535,7 +5587,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2068951354}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.99, y: 2, z: 0}
+  m_LocalPosition: {x: -6.85, y: -7.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5553,8 +5605,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 641b09d6ff8876d4787d29f6e0da81a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 5
+  walkSpeed: 1
   shouldTurn: 0
+--- !u!114 &2068951361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068951354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7adc6745c63e5e47bd67aa76a799183, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canBeDamagedFromAbove: 1
+  canBeDamagedFromTheSides: 0
+  canBeDamagedFromSliding: 0
+  fallOffScreenWhenDead: 1
 --- !u!1 &2144524854
 GameObject:
   m_ObjectHideFlags: 0

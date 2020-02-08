@@ -261,8 +261,6 @@ public class Character : MonoBehaviour
 
     public void AddCoins(int numberOfCoins)
     {
-        this.LoseHealth();
-
         this.coins += numberOfCoins;
         this.ExplodeCoins(numberOfCoins);
 
@@ -340,7 +338,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    private void LoseHealth()
+    public void LoseHealth()
     {
         if (!this.IsHurting)
         {

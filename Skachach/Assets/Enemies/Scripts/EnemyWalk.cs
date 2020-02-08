@@ -10,16 +10,21 @@ public class EnemyWalk : MonoBehaviour
 
     private Vector2 moveVector;
     private Rigidbody2D rigidBody;
+    private EnemyDamageHandler enemyDamageHandler;
 
     void Start()
     {
         this.moveVector = Vector2.left;
         this.rigidBody = GetComponent<Rigidbody2D>();
+        this.enemyDamageHandler = this.gameObject.GetComponent<EnemyDamageHandler>();
     }
 
     void Update()
     {
-        Move();
+        if (!enemyDamageHandler.IsDead)
+            Move();
+        else
+            StopMoving();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -39,5 +44,10 @@ public class EnemyWalk : MonoBehaviour
     private void Move()
     {
         this.rigidBody.velocity = new Vector2(this.moveVector.x * this.walkSpeed, this.rigidBody.velocity.y);
+    }
+
+    private void StopMoving()
+    {
+        this.rigidBody.velocity = Vector2.zero;
     }
 }
