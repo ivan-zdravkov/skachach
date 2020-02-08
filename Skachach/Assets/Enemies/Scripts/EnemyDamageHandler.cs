@@ -35,7 +35,7 @@ public class EnemyDamageHandler : MonoBehaviour
 
         if (character && !IsDead)
         {
-            HitDirection hitFrom = this.GetHitDirection();
+            HitDirection hitFrom = this.GetHitDirection(character);
 
             switch (hitFrom)
             {
@@ -86,9 +86,16 @@ public class EnemyDamageHandler : MonoBehaviour
         }
     }
 
-    private HitDirection GetHitDirection()
+    private HitDirection GetHitDirection(Character character)
     {
-        return HitDirection.Above;
+        if (character.GoingDown)
+            return HitDirection.Above;
+        else if (character.GoingUp)
+            return HitDirection.Below;
+        else if (character.Sliding)
+            return HitDirection.SideAndSlide;
+        else
+            return HitDirection.Side;
     }
 
     private enum HitDirection
