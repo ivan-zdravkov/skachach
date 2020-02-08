@@ -157,6 +157,10 @@ MonoBehaviour:
   canBeDamagedFromTheSides: 1
   canBeDamagedFromSliding: 1
   fallOffScreenWhenDead: 0
+  canShoot: 1
+  projectile: {fileID: 0}
+  shootInterval: 5
+  shootIntervalUnsertantyPercent: 25
 --- !u!70 &4164413392217442551
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

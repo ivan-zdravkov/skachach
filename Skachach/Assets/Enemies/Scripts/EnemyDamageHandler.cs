@@ -6,19 +6,62 @@ using UnityEngine;
 public class EnemyDamageHandler : MonoBehaviour
 {
     private const string DEAD = "IsDead";
+    private const string SHOOTING = "IsFiring";
 
     [SerializeField] bool canBeDamagedFromAbove = true;
     [SerializeField] bool canBeDamagedFromTheSides = true;
     [SerializeField] bool canBeDamagedFromSliding = true;
     [SerializeField] bool fallOffScreenWhenDead = false;
+    [SerializeField] bool canShoot = false;
+    [SerializeField] GameObject projectile;
+    [SerializeField] [Range(1, 10)] int shootInterval = 5;
+    [SerializeField] [Range(0, 50)] int shootIntervalUnsertantyPercent = 25;
 
     private Character character;
     private Animator animator;
+    private EnemyWalk walker;
+
+    private float elapsed = 0f;
+    private float shouldShoot = 0f;
+
+    private float speedToReset = 0f;
 
     private void Start()
     {
         this.character = FindObjectOfType<Character>();
         this.animator = GetComponent<Animator>();
+        this.walker = GetComponent<EnemyWalk>();
+
+        if (canShoot)
+            DetermineShootInterval();
+    }
+
+    private void Update()
+    {
+        if (canShoot)
+        {
+            if (elapsed < shouldShoot)
+                elapsed += Time.deltaTime;
+            else
+            {
+                elapsed = 0;
+                this.DetermineShootInterval();
+
+                this.animator.speed = 0.5f;
+                this.animator.SetBool(SHOOTING, true);
+
+                this.speedToReset = this.walker.Speed;
+                this.walker.Speed = 0f;
+            }
+        }
+    }
+
+    public void StopShooting()
+    {
+        this.animator.speed = 1f;
+        this.animator.SetBool(SHOOTING, false);
+
+        this.walker.Speed = speedToReset;
     }
 
     public bool IsDead
@@ -118,5 +161,13 @@ public class EnemyDamageHandler : MonoBehaviour
         Side,
         SideAndSlide,
         Below
+    }
+
+    private void DetermineShootInterval()
+    {
+        this.shouldShoot = UnityEngine.Random.Range(
+            min: UnityEngine.Random.Range(shootInterval - (shootInterval * shootIntervalUnsertantyPercent / 100.0f), shootInterval),
+            max: UnityEngine.Random.Range(shootInterval, shootInterval + (shootInterval * shootIntervalUnsertantyPercent / 100.0f))
+        );
     }
 }

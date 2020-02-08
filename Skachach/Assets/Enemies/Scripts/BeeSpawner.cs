@@ -32,7 +32,7 @@ public class BeeSpawner : MonoBehaviour
             float x = this.transform.position.x;
             float y = Random.Range(minY, maxY + 1);
 
-            bee.GetComponent<EnemyWalk>().SetSpeed(speed);
+            bee.GetComponent<EnemyWalk>().Speed = speed;
             bee.transform.position = new Vector2(x, y);
 
             Instantiate(bee);

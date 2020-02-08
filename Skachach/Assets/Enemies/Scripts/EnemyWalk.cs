@@ -27,9 +27,16 @@ public class EnemyWalk : MonoBehaviour
             StopMoving();
     }
 
-    public void SetSpeed(float speed)
+    public float Speed
     {
-        this.walkSpeed = speed;
+        get
+        {
+            return this.walkSpeed;
+        }
+        set
+        {
+            this.walkSpeed = value;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
