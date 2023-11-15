@@ -1,2 +1,2 @@
 # Skachach
-Skachach is a 2D Unity game. Go play it at [skachach.unity-2d.zdravkov.dev](https://skachach.unity-2d.zdravkov.dev)
+А 2D Unity platformer game, showcasing the full engine capabilities.
